@@ -1,0 +1,27 @@
+Steps:
+1. Create a directory on the local file system.
+2. Select Clone "Clone or download" on Github, copy the link
+3. In Visual Studio Code, sect File -> Add Folder to Workspace -> Select the newly created directory
+4. Select Terminal Window and type:
+4.a. git config --global user.name <github userID>
+4.b. git clone <URL from github link copied earlier>
+
+That should be all that's required.  any newly created file should be available on github after stage/commit/push.
+
+#Crete a new branch from master
+git branch <name new branch>
+
+#Come back to master branch
+git checout master
+
+#Publish new branch to Git
+git publish 
+
+#Add changes files to Staged Changes
+#Click on plus signal in the file
+#Type a commit message and click on Commit Staged or ctrl+Enter
+
+ #Push all changes files to GIT:
+ git push
+
+ok
