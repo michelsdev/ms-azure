@@ -1,4 +1,4 @@
-[![Build Status](https://dev.azure.com/michelsdev/Practice%20Test%2001/_apis/build/status/michelsdev.practice01?branchName=master)](https://dev.azure.com/michelsdev/Practice%20Test%2001/_build/latest?definitionId=4&branchName=master)
+[![Build Status](https://dev.azure.com/michelsdev/azure-pipeline-vm-creation/_apis/build/status/michelsdev.ms-azure?branchName=master)](https://dev.azure.com/michelsdev/azure-pipeline-vm-creation/_build/latest?definitionId=6&branchName=master)
 
 Practice:
 1 - Create an Azure service connector in Azure DevOps, in order to connect your subscription with your organization in DevOps.
