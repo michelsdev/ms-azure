@@ -1,5 +1,5 @@
 # ms-azure
-Scripts and documentation abou MS Azure.
+Scripts and documentation about MS Azure.
 
 Personal repository to store MS Azure scripts, commands and documentation.
 
