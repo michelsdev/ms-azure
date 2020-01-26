@@ -1,0 +1,32 @@
+trigger:
+- master
+ 
+pool: vm-hostedagent
+ 
+variables:
+- group: KeyVault
+
+
+steps:
+- task: PowerShell@2
+  displayName: 'Resource Group Creation'
+  inputs:
+    targetType: 'filePath' 
+    filePath: 'create-resourcegroup.ps1'
+
+
+- task: PowerShell@2
+  displayName: 'VNET and VM Creation'
+  inputs:
+    targetType: 'filePath' 
+    env: $(user-vm-windows) $(pwd-vm-windows)
+    filePath: 'create-vm.ps1'
+    arguments: '-vmname vm01-lab-devops -user $(user-vm-windows) -pass $(pwd-vm-windows)'
+  
+    #arguments: # Optional
+    #script: '# Write your PowerShell commands here.Write-Host Hello World' # Required when targetType == Inline
+    #errorActionPreference: 'stop' # Optional. Options: stop, continue, silentlyContinue
+    #failOnStderr: false # Optional
+    #ignoreLASTEXITCODE: false # Optional
+    #pwsh: false # Optional
+    #workingDirectory: # Optional
