@@ -23,10 +23,3 @@ steps:
     filePath: 'azure-pipeline-vm-creation\scripts\create-vm.ps1'
     arguments: '-vmname vm01-lab-devops -user $(user-vm-windows) -pass $(pwd-vm-windows)'
   
-    #arguments: # Optional
-    #script: '# Write your PowerShell commands here.Write-Host Hello World' # Required when targetType == Inline
-    #errorActionPreference: 'stop' # Optional. Options: stop, continue, silentlyContinue
-    #failOnStderr: false # Optional
-    #ignoreLASTEXITCODE: false # Optional
-    #pwsh: false # Optional
-    #workingDirectory: # Optional
