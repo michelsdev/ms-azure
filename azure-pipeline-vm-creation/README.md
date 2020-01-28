@@ -1,6 +1,7 @@
 [![Build Status](https://dev.azure.com/michelsdev/azure-pipeline-vm-creation/_apis/build/status/michelsdev.ms-azure?branchName=master)](https://dev.azure.com/michelsdev/azure-pipeline-vm-creation/_build/latest?definitionId=6&branchName=master)
 
 Practice:
+
 1 - Create an Azure service connector in Azure DevOps, in order to connect your subscription with your organization in DevOps.
 
 2 - Create a self-hosted agent to be used by your pipeline in Azure DevOps.
