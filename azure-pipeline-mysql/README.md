@@ -3,6 +3,7 @@ Practice:
 1 - Create a self-hosted agent with MySQL Workbench installed.
 
 2 - Create a Azure MySQL Single Database in Azure.
+	
 	a) Create a DB called test-devops
 
 3 - Create a script (whatever language) with wrong credentials to access this DB. 
