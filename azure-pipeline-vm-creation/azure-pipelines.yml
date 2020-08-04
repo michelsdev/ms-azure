@@ -5,10 +5,22 @@ variables:
   group: KeyVault
   vmImageName: 'windows-2019'
 
-
 pool:
       vmImage: $(vmImageName)
 steps:
+
+- task: AzureCLI@2
+  displayName: Azure CLI
+  inputs:
+    azureSubscription: 'Azure Michels Dev'
+    scriptType: ps
+    scriptLocation: inlineScript
+    inlineScript: |
+      az --version
+      az account show
+
+
+
 - task: PowerShell@2
   displayName: 'Resource Group Creation'
   inputs:
