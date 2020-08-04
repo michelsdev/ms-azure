@@ -9,15 +9,15 @@ pool:
       vmImage: $(vmImageName)
 steps:
 
-
-- task: PowerShell@2
-  displayName: 'VNET and VM Creation'
-  inputs:
-    azureSubscription: 'Azure Michels Dev'
-    targetType: 'filePath' 
-    env: $(user-vm-windows) $(pwd-vm-windows)
-    filePath: 'azure-pipeline-vm-creation\scripts\create-vm.ps1'
-    arguments: '-vmname vm01-lab-devops -user $(user-vm-windows) -pass $(pwd-vm-windows)'
+#
+#- task: PowerShell@2
+  #displayName: 'VNET and VM Creation'
+  #inputs:
+    #azureSubscription: 'Azure Michels Dev'
+    #targetType: 'filePath' 
+    #env: $(user-vm-windows) $(pwd-vm-windows)
+    #filePath: 'azure-pipeline-vm-creation\scripts\create-vm.ps1'
+    #arguments: '-vmname vm01-lab-devops -user $(user-vm-windows) -pass $(pwd-vm-windows)'
     
 - task: AzureCLI@2
   displayName: Azure CLI
