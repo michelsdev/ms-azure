@@ -1,12 +1,13 @@
 trigger:
 - master
  
-pool: vm-hostedagent
- 
 variables:
-- group: KeyVault
+  group: KeyVault
+  vmImageName: 'windows-latest'
 
 
+pool:
+      vmImage: $(vmImageName)
 steps:
 - task: PowerShell@2
   displayName: 'Resource Group Creation'
