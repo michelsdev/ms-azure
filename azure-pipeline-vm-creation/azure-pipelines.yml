@@ -10,14 +10,14 @@ pool:
       vmImage: $(vmImageName)
 steps:
 
-- task: AzureCLI@2
-  displayName: 'AzureCLI: Resource Group Creation'
-  inputs:
-    azureSubscription: 'Azure Michels Dev'
-    scriptType: ps
-    scriptLocation: inlineScript
-    inlineScript: |
-      az deployment sub create --name AZ-RG-Deployment-Lab --location centralus --template-file .\azure-pipeline-vm-creation\templates\ResourceGroup.json --parameters rgName=rg-lab-devops rgLocation=centralus
+#- task: AzureCLI@2
+  #displayName: 'AzureCLI: Resource Group Creation'
+  #inputs:
+    #azureSubscription: 'Azure Michels Dev'
+    #scriptType: ps
+    #scriptLocation: inlineScript
+    #inlineScript: |
+      #az deployment sub create --name AZ-RG-Deployment-Lab --location centralus --template-file .\azure-pipeline-vm-creation\templates\ResourceGroup.json --parameters rgName=rg-lab-devops rgLocation=centralus
 
 
 - task: AzureKeyVault@1
