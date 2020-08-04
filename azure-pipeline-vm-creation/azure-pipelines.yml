@@ -4,13 +4,14 @@ trigger:
 variables:
   group: KeyVault
   vmImageName: 'windows-2019'
+  vmname: 'vm01-lab-devops'
 
 pool:
       vmImage: $(vmImageName)
 steps:
 
 - task: AzureCLI@2
-  displayName: 'Azure CLI - Resource Group Creation'
+  displayName: 'AzureCLI: Resource Group Creation'
   inputs:
     azureSubscription: 'Azure Michels Dev'
     scriptType: ps
@@ -19,17 +20,23 @@ steps:
       az deployment sub create --name AZ-RG-Deployment-Lab --location centralus --template-file .\azure-pipeline-vm-creation\templates\ResourceGroup.json --parameters rgName=rg-lab-devops rgLocation=centralus
 
 
+- task: AzureKeyVault@1
+  displayName: 'Get Secrets from Azure KeyVault'
+  inputs:
+    azureSubscription: 'Azure Michels Dev'
+    keyVaultName: 'michels-keyvault-devops'
+    secretsFilter: '*'
+    runAsPreJob: false # Azure DevOps Services only
+    
 - task: AzureCLI@2
-  displayName: 'Azure CLI -VNET and VM Creation'
+  displayName: 'Azure CLI: VNET and VM Creation'
   inputs:
     azureSubscription: 'Azure Michels Dev'
     scriptType: 'ps' 
     scriptLocation: inlineScript
-    env: $(user-vm-windows) $(pwd-vm-windows)
-    arguments: '-vmname vm01-lab-devops -user $(user-vm-windows) -pass $(pwd-vm-windows)'
     inlineScript: |
-      az group deployment create --resource-group rg-lab-devops --template-file .\azure-pipeline-vm-creation\templates\WindowsVirtualMachine.json --parameters .\azure-pipeline-vm-creation\templates\WindowsVirtualMachine.parameters.json --parameters adminUsername=$user --parameters adminPassword=$pass --parameters virtualMachineName=$vmname
-      az vm deallocate -g rg-lab-devops -n $vmname
+      az group deployment create --resource-group rg-lab-devops --template-file .\azure-pipeline-vm-creation\templates\WindowsVirtualMachine.json --parameters .\azure-pipeline-vm-creation\templates\WindowsVirtualMachine.parameters.json --parameters adminUsername=$(user-vm-windows) --parameters adminPassword=$(pwd-vm-windows) --parameters virtualMachineName=$(vmname)
+      az vm deallocate -g rg-lab-devops -n $(vmname)
 
     
     
