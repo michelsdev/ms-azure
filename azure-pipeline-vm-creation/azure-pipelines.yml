@@ -12,6 +12,7 @@ steps:
 - task: PowerShell@2
   displayName: 'Resource Group Creation'
   inputs:
+    azureSubscription: 'Azure Michels Dev'
     targetType: 'filePath' 
     filePath: 'azure-pipeline-vm-creation\scripts\create-resourcegroup.ps1'
 
