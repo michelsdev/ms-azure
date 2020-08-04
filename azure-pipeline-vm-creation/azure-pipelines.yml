@@ -3,7 +3,7 @@ trigger:
  
 variables:
   group: KeyVault
-  vmImageName: 'windows-latest'
+  vmImageName: 'windows-2019'
 
 
 pool:
