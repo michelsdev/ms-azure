@@ -9,26 +9,27 @@ pool:
       vmImage: $(vmImageName)
 steps:
 
-#
-#- task: PowerShell@2
-  #displayName: 'VNET and VM Creation'
-  #inputs:
-    #azureSubscription: 'Azure Michels Dev'
-    #targetType: 'filePath' 
-    #env: $(user-vm-windows) $(pwd-vm-windows)
-    #filePath: 'azure-pipeline-vm-creation\scripts\create-vm.ps1'
-    #arguments: '-vmname vm01-lab-devops -user $(user-vm-windows) -pass $(pwd-vm-windows)'
-    
 - task: AzureCLI@2
-  displayName: Azure CLI
+  displayName: 'Azure CLI - Resource Group Creation'
   inputs:
     azureSubscription: 'Azure Michels Dev'
     scriptType: ps
     scriptLocation: inlineScript
     inlineScript: |
-      az account show
-      az deployment create --name AZ-RG-Deployment-Lab --location centralus --template-file .\azure-pipeline-vm-creation\templates\ResourceGroup.json --parameters rgName=rg-lab-devops rgLocation=centralus
+      az deployment sub create --name AZ-RG-Deployment-Lab --location centralus --template-file .\azure-pipeline-vm-creation\templates\ResourceGroup.json --parameters rgName=rg-lab-devops rgLocation=centralus
 
 
+- task: AzureCLI@2
+  displayName: 'Azure CLI -VNET and VM Creation'
+  inputs:
+    azureSubscription: 'Azure Michels Dev'
+    scriptType: 'ps' 
+    scriptLocation: inlineScript
+    env: $(user-vm-windows) $(pwd-vm-windows)
+    arguments: '-vmname vm01-lab-devops -user $(user-vm-windows) -pass $(pwd-vm-windows)'
+    inlineScript: |
+      az group deployment create --resource-group rg-lab-devops --template-file .\azure-pipeline-vm-creation\templates\WindowsVirtualMachine.json --parameters .\azure-pipeline-vm-creation\templates\WindowsVirtualMachine.parameters.json --parameters adminUsername=$user --parameters adminPassword=$pass --parameters virtualMachineName=$vmname
+      az vm deallocate -g rg-lab-devops -n $vmname
 
-  
+    
+    
