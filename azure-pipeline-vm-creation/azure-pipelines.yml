@@ -16,8 +16,9 @@ steps:
     scriptType: ps
     scriptLocation: inlineScript
     inlineScript: |
-      az --version
       az account show
+      az deployment create --name AZ-RG-Deployment-Lab --location centralus --template-file .\azure-pipeline-vm-creation\templates\ResourceGroup.json --parameters rgName=rg-lab-devops rgLocation=centralus
+
 
 
 
